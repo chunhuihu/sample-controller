@@ -34,3 +34,5 @@ bash "${CODEGEN_PKG}"/generate-groups.sh "deepcopy,client,informer,lister" \
 
 # To use your own boilerplate text append:
 #   --go-header-file "${SCRIPT_ROOT}"/hack/custom-boilerplate.go.txt
+kubectl delete -f artifacts/examples/crd-status-subresource.yaml
+kubectl apply -f artifacts/examples/crd-status-subresource.yaml
