@@ -30,7 +30,7 @@ spec:
               type: object
               properties:
                 availableReplicas1:
-                  type: integer
+                  type: string
                 updateReason:
                   type: string
       # subresources for the custom resource
