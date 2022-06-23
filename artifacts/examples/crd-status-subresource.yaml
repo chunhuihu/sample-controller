@@ -29,10 +29,10 @@ spec:
             status:
               type: object
               properties:
-#                availableReplicas1:
-#                  type: string
                 updateReason:
                   type: string
+#                availableReplicas1:
+#                  type: string
       # subresources for the custom resource
       subresources:
         # enables the status subresource
