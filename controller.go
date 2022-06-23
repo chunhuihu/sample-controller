@@ -19,7 +19,6 @@ package main
 import (
 	"context"
 	"fmt"
-	"strconv"
 	"time"
 
 	appsv1 "k8s.io/api/apps/v1"
@@ -332,8 +331,9 @@ func (c *Controller) updateFooStatus(foo *samplev1alpha1.Foo, deployment *appsv1
 	// fooCopy.Status.UpdateReason = "udpatestatusFrom" + fooCopy.ResourceVersion
 	// rvInt, _ := strconv.Atoi(foo.ResourceVersion)
 	// rv := strconv.Itoa(rvInt)
-	generation := strconv.FormatInt(foo.Generation, 10)
-	fooCopy.Status.UpdateReason = "udpatestatusFrom" + foo.Name + generation
+
+	uid := fooCopy.UID
+	fooCopy.Status.UpdateReason = "udpatestatusFrom" + (string)(uid)
 	klog.Info("update status resource version ", fooCopy.ResourceVersion)
 	_, err := c.sampleclientset.SamplecontrollerV1alpha1().Foos(foo.Namespace).UpdateStatus(context.TODO(), fooCopy, metav1.UpdateOptions{})
 	return err
