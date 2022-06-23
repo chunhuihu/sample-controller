@@ -40,7 +40,7 @@ type FooSpec struct {
 
 // FooStatus is the status for a Foo resource
 type FooStatus struct {
-	AvailableReplicas int32  `json:"availableReplicas"`
+	AvailableReplicas string `json:"availableReplicas"`
 	UpdateReason      string `json:"updateReason"`
 }
 
