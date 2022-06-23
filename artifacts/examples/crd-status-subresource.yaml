@@ -29,7 +29,7 @@ spec:
             status:
               type: object
               properties:
-                availableReplicas:
+                availableReplicas1:
                   type: integer
                 updateReason:
                   type: string
