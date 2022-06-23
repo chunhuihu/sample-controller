@@ -329,7 +329,7 @@ func (c *Controller) updateFooStatus(foo *samplev1alpha1.Foo, deployment *appsv1
 	// UpdateStatus will not allow changes to the Spec of the resource,
 	// which is ideal for ensuring nothing other than resource status has been updated.
 	// fooCopy.Status.UpdateReason = "udpatestatusFrom" + fooCopy.ResourceVersion
-	fooCopy.Status.UpdateReason = "udpatestatusFrom123456"
+	fooCopy.Status.UpdateReason = "udpatestatusFrom" + fooCopy.ResourceVersion
 	klog.Info("update status resource version ", fooCopy.ResourceVersion)
 	_, err := c.sampleclientset.SamplecontrollerV1alpha1().Foos(foo.Namespace).UpdateStatus(context.TODO(), fooCopy, metav1.UpdateOptions{})
 	return err
