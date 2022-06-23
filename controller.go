@@ -369,22 +369,22 @@ func (c *Controller) handleObject(obj interface{}) {
 		klog.V(4).Infof("Recovered deleted object '%s' from tombstone", object.GetName())
 	}
 	klog.V(4).Infof("Processing object: %s", object.GetName())
-	if ownerRef := metav1.GetControllerOf(object); ownerRef != nil {
-		// If this object is not owned by a Foo, we should not do anything more
-		// with it.
-		if ownerRef.Kind != "Foo" {
-			return
-		}
+	// if ownerRef := metav1.GetControllerOf(object); ownerRef != nil {
+	// 	// If this object is not owned by a Foo, we should not do anything more
+	// 	// with it.
+	// 	if ownerRef.Kind != "Foo" {
+	// 		return
+	// 	}
 
-		foo, err := c.foosLister.Foos(object.GetNamespace()).Get(ownerRef.Name)
-		if err != nil {
-			klog.V(4).Infof("ignoring orphaned object '%s/%s' of foo '%s'", object.GetNamespace(), object.GetName(), ownerRef.Name)
-			return
-		}
+	// 	foo, err := c.foosLister.Foos(object.GetNamespace()).Get(ownerRef.Name)
+	// 	if err != nil {
+	// 		klog.V(4).Infof("ignoring orphaned object '%s/%s' of foo '%s'", object.GetNamespace(), object.GetName(), ownerRef.Name)
+	// 		return
+	// 	}
 
-		c.enqueueFoo(foo)
-		return
-	}
+	// 	c.enqueueFoo(foo)
+	// 	return
+	// }
 }
 
 // newDeployment creates a new Deployment for a Foo resource. It also sets
