@@ -31,6 +31,8 @@ spec:
               properties:
                 availableReplicas:
                   type: integer
+                updateReason:
+                  type: string
       # subresources for the custom resource
       subresources:
         # enables the status subresource
