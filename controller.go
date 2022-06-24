@@ -117,6 +117,10 @@ func NewController(
 	fooInformer.Informer().AddEventHandler(cache.ResourceEventHandlerFuncs{
 		AddFunc: controller.enqueueFoo,
 		UpdateFunc: func(old, new interface{}) {
+			newFoo := new.(*samplev1alpha1.Foo)
+			oldFoo := old.(*samplev1alpha1.Foo)
+			klog.Info("Old Foo ResourceVersion: ", oldFoo.ResourceVersion)
+			klog.Info("New Foo ResourceVersion: ", newFoo.ResourceVersion)
 			controller.enqueueFoo(new)
 		},
 	})
