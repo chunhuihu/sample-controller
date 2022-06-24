@@ -341,8 +341,7 @@ func (c *Controller) updateFooStatus(foo *samplev1alpha1.Foo, deployment *appsv1
 	// rvInt, _ := strconv.Atoi(foo.ResourceVersion)
 	// rv := strconv.Itoa(rvInt)
 
-	uid := "abc" + fooCopy.ResourceVersion
-	fooCopy.Status.UpdateReason = "udpatestatusFrom" + (string)(uid)
+	fooCopy.Status.UpdateReason = "udpatestatusAt" + time.Now().String()
 	klog.Info("update status resource version ", fooCopy.ResourceVersion)
 	_, err := c.sampleclientset.SamplecontrollerV1alpha1().Foos(foo.Namespace).UpdateStatus(context.TODO(), fooCopy, metav1.UpdateOptions{})
 	return err
