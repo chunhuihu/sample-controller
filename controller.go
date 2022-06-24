@@ -119,6 +119,8 @@ func NewController(
 		UpdateFunc: func(old, new interface{}) {
 			newFoo := new.(*samplev1alpha1.Foo)
 			oldFoo := old.(*samplev1alpha1.Foo)
+			klog.Infof("Old Foo : %v", oldFoo)
+			klog.Infof("New Foo : %v", newFoo)
 			klog.Info("Old Foo ResourceVersion: ", oldFoo.ResourceVersion)
 			klog.Info("New Foo ResourceVersion: ", newFoo.ResourceVersion)
 			controller.enqueueFoo(new)
