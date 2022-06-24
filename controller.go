@@ -189,6 +189,7 @@ func (c *Controller) runWorker() {
 // processNextWorkItem will read a single work item off the workqueue and
 // attempt to process it, by calling the syncHandler.
 func (c *Controller) processNextWorkItem() bool {
+	klog.Info("work queue len before getting ", c.workqueue.Len())
 	obj, shutdown := c.workqueue.Get()
 
 	if shutdown {
@@ -229,6 +230,7 @@ func (c *Controller) processNextWorkItem() bool {
 		}
 		// Finally, if no error occurs we Forget this item so it does not
 		// get queued again until another change happens.
+		klog.Info("work queue len after processing ", c.workqueue.Len())
 		c.workqueue.Forget(obj)
 		klog.Infof("Successfully synced '%s'", key)
 		return nil
@@ -355,7 +357,7 @@ func (c *Controller) enqueueFoo(obj interface{}) {
 		return
 	}
 	c.workqueue.Add(key)
-	klog.Info("work queue ", c.workqueue.Len())
+	klog.Info("work queue len after adding is ", c.workqueue.Len())
 }
 
 // handleObject will take any resource implementing metav1.Object and attempt
