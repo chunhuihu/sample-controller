@@ -355,7 +355,7 @@ func (c *Controller) enqueueFoo(obj interface{}) {
 		return
 	}
 	c.workqueue.Add(key)
-	klog.Info("work queue ", c.workqueue)
+	klog.Info("work queue ", c.workqueue.Len())
 }
 
 // handleObject will take any resource implementing metav1.Object and attempt
